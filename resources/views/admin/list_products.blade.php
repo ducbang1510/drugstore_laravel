@@ -41,15 +41,25 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 h-10 w-10">
-                                                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
+                                                        <img class="h-10 w-10 rounded-full"
+                                                             src="<?php
+                                                             if(isset($productImages)) {
+                                                                 if(isset($p)){
+                                                                     foreach ($productImages as $i) {
+                                                                         if($i->product_id == $p->product_id) {
+                                                                             echo 'images/'.$i->path;
+                                                                             break;
+                                                                         }
+                                                                     }
+                                                                 }
+                                                             }
+                                                             ?>"
+                                                             alt="">
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900">
                                                             {{ $p->product_name }}
                                                         </div>
-{{--                                                            <div class="text-sm text-gray-500">--}}
-{{--                                                                jane.cooper@example.com--}}
-{{--                                                            </div>--}}
                                                     </div>
                                                 </div>
                                             </td>
@@ -57,7 +67,6 @@
                                                 <div class="text-sm text-gray-900">
                                                     @php if(isset($p->price)){ echo number_format($p->price, 0); } @endphp
                                                 </div>
-{{--                                                    <div class="text-sm text-gray-500">Optimization</div>--}}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 @php if(isset($p->quantity)){ echo $p->quantity; } @endphp
@@ -75,6 +84,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                {{ $products->links() }}
                             </div>
                         </div>
                     </div>

@@ -29,4 +29,9 @@ class Product extends Model
     {
         return $this->belongsTo(Country::class, "country_id", "country_id");
     }
+
+    public function ProductImages()
+    {
+        return $this->hasMany(ProductImages::class, 'product_id', 'product_id');
+    }
 }

@@ -65,7 +65,21 @@
                 @foreach($productpopular as $p)
                     <div class="product col-sm-6 col-lg-4 text-center item mb-4">
                         <a href="{{route('prodDetail', ['product_id'=>$p->product_id])}}">
-                            <img class="product-img" src="images/Thuoc12.jpg" alt="Image">
+                            <img class="product-img"
+                                 src="<?php
+                                 if(isset($productImages)) {
+                                     if(isset($p)){
+                                         foreach ($productImages as $i) {
+                                             if($i->product_id == $p->product_id) {
+                                                 echo 'images/'.$i->path;
+                                                 break;
+                                             }
+                                         }
+                                     }
+                                 }
+                                 ?>"
+                                 alt="Image" width="270" height="370"
+                            >
                         </a>
                         <h3 class="text-dark product-name">
                             <a
@@ -97,7 +111,21 @@
                         @foreach($productpopular as $p)
                             <div class="product text-center item mb-4">
                                 <a href="{{route('prodDetail', ['product_id'=>$p->product_id])}}">
-                                    <img class="product-img" src="images/Thuoc7.jpg" alt="Image">
+                                    <img class="product-img"
+                                         src="<?php
+                                         if(isset($productImages)) {
+                                             if(isset($p)){
+                                                 foreach ($productImages as $i) {
+                                                     if($i->product_id == $p->product_id) {
+                                                         echo 'images/'.$i->path;
+                                                         break;
+                                                     }
+                                                 }
+                                             }
+                                         }
+                                         ?>"
+                                         alt="Image" width="346.66" height="475.05"
+                                    >
                                 </a>
                                 <h3 class="text-dark product-name">
                                     <a

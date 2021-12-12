@@ -10,13 +10,13 @@
             <div class="row">
                 <div class="col-md-5 mr-auto">
                     <div class="border text-center">
-                        <img class="product-image" src="images/thuoc10.jpg" alt="Image" height="400"
+                        <img class="product-image" src="images/{{ $productImage->path }}" alt="Image" height="400"
                              width="400"/>
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <h2 class="text-black"><span>Tên sản phẩm:</span> {{$prod->product_name}}<br></h2>
-                    <p class="text-des">{{$prod->description}}<br></p>
+                    <h2 class="text-black"><span>Tên sản phẩm:</span> {{ $prod->product_name }}<br></h2>
+                    <p class="text-des">{{ $prod->description }}<br></p>
                     <p>
                         <strong class="text-primary h4" style="font-size: 30px">
                             <span>Giá:</span> @php if(isset($prod->price)) { echo number_format($prod->price); } @endphp VND<br>
@@ -70,35 +70,44 @@
                                     <tbody>
                                     <tr>
                                         <th scope="row">Số lượng</th>
-                                        <td>{{$prod->quantity}}</td>
+                                        <td>{{ $prod->quantity }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Dạng bào chế</th>
-                                        <td>{{$prod->dosage_forms}}</td>
+                                        <td>{{ $prod->dosage_forms }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Thành phần</th>
-                                        <td>{{$prod->product_Ingredient}}</td>
+                                        <td>{{ $prod->product_Ingredient }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Tác dụng</th>
-                                        <td>{{$prod->effect}}</td>
+                                        <td>{{ $prod->effect }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Liều dùng</th>
-                                        <td>{{$prod->dosage}}</td>
+                                        <td>{{ $prod->dosage }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Thuốc dùng theo toa</th>
-                                        <td>{{$prod->product_Ingredient}}</td>
+                                        <td>
+                                            @php if(isset($prod->is_prescription_drugs)) {
+                                                $check = $prod->is_prescription_drugs;
+                                                if($check == 1)
+                                                    echo 'Có';
+                                                else
+                                                    echo  'Không';
+                                            }
+                                            @endphp
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Cảnh báo</th>
-                                        <td>{{$prod->warning}}</td>
+                                        <td>{{ $prod->warning }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Phân loại</th>
-                                        <td>{{$prod->category->category_name}}</td>
+                                        <td>{{ $prod->category->category_name }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -110,15 +119,15 @@
                                     <tbody>
                                     <tr>
                                         <th scope="row">Nhà sản xuất</th>
-                                        <td>{{$prod->manufacturer->company_name}}</td>
+                                        <td>{{ $prod->manufacturer->company_name }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Quốc gia</th>
-                                        <td>{{$prod->Country->country_name}}</td>
+                                        <td>{{ $prod->Country->country_name }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Mô tả</th>
-                                        <td>{{$prod->description}}</td>
+                                        <td>{{ $prod->description }}</td>
                                     </tr>
                                     </tbody>
                                 </table>

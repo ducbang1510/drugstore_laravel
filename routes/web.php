@@ -21,8 +21,10 @@ Route::get('productdetail/{product_id}', ['as'=>'prodDetail', 'uses' => 'Product
 
 // Backend
 Route::get('/admin/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@index']);
-Route::get('admin/products/add-product', ['as' => 'add-product', 'uses' => 'ProductController@add_product']);
-Route::get('admin/products/list-products', ['as' => 'list-products', 'uses' => 'ProductController@list_products']);
+Route::get('admin/products/list-products', ['as' => 'list-products', 'uses' => 'AdminProductController@listProducts']);
+Route::get('admin/products/add-product', ['as' => 'add-product-page', 'uses' => 'AdminProductController@addProductPage']);
+Route::post('', ['as' => 'add-product', 'uses' => 'AdminProductController@addProduct']);
+Route::get('admin/products/{ProductId}', ['as' => 'del-product', 'uses' => 'AdminProductController@delProduct']);
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');

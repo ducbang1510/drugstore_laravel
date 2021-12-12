@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductImages;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Country;
@@ -13,23 +17,14 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('pages.products', compact('products'));
+        $productImages = ProductImages::all();
+        return view('pages.products', compact(['products', 'productImages']));
     }
 
     public function getProductDetail($id)
     {
         $prod = Product::where("product_id",$id)->first();
-        return view("pages.product_details", compact('prod'));
-    }
-
-    public function list_products()
-    {
-        $products = Product::all();
-        return view('admin.list_products', compact('products'));
-    }
-
-    public function add_product()
-    {
-        return view('admin.add_product');
+        $productImage = ProductImages::where("product_id",$id)->first();
+        return view("pages.product_details", compact(['prod', 'productImage']));
     }
 }
