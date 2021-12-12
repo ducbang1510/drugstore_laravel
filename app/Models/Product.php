@@ -17,16 +17,16 @@ class Product extends Model
 
     public function Category()
     {
-        return $this->belongsTo(Category::class, "category_id", "product_id");
+        return $this->belongsTo(Category::class, "category_id", "category_id");
     }
 
     public function Manufacturer()
     {
-        return $this->belongsTo(Manufacturer::class, "manufacturer_id", "product_id");
+        return $this->belongsTo(Manufacturer::class, "manufacturer_id", "manufacturer_id");
     }
 
     public function Country()
     {
-        return $this->belongsTo(Country::class, "country_id", "product_id");
+        return $this->belongsTo(Country::class, "country_id", "country_id");
     }
 }

@@ -12,10 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Frontend
+Route::get('/', 'HomeController@index');
+Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::get('/products', ['as' => 'shop', 'uses' => 'ProductController@index']);
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('productdetail/{product_id}', ['as'=>'prodDetail', 'uses' => 'ProductController@getProductDetail']);
 
-Route::resource('index', 'ProductController');
-Route::get('products', ['as' => 'home', 'uses' => 'ProductController@index']);
+// Backend
+Route::get('/admin/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@index']);
+Route::get('admin/products/add-product', ['as' => 'add-product', 'uses' => 'ProductController@add_product']);
+Route::get('admin/products/list-products', ['as' => 'list-products', 'uses' => 'ProductController@list_products']);
+//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//    return view('dashboard');
+//})->name('dashboard');
