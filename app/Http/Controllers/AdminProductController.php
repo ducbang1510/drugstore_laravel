@@ -24,11 +24,68 @@ class AdminProductController extends Controller
         return view('admin.list_products', compact(['products', 'productImages']));
     }
 
-    public function editProduct($id)
+    public function editProductPage($id)
     {
-        $product = Product::where("product_id",$id)->first();
         $categories = Category::all();
-        return view('admin.edit_product', compact(['product', 'categories']));
+        $countries = Country::all();
+        $manufacturers = Manufacturer::all();
+        $product = Product::where("product_id",$id)->first();
+        $productImage = ProductImages::where("product_id",$id)->first();
+        return view('admin.edit_product', compact(['categories', 'countries', 'manufacturers', 'productImage', 'product']));
+    }
+
+    public function editProduct($id, Request $request)
+    {
+        $messages = [
+            'product_name.required' => 'Bạn phải nhập tên sản phẩm !',
+            'price.required' => 'Bạn phải nhập giá sản phẩm',
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'product_name' => 'required',
+            'price' => 'required',
+        ], $messages)->validate();
+
+        $filename = "";
+        if($request->hasFile('fileUpload'))
+        {
+            if ($request->file('fileUpload')->isValid()) {
+                $filename = $request->fileUpload->getClientOriginalName();
+                $request->fileUpload->move('images/', $filename);
+            }
+        }
+        $product_edit = Product::where('product_id', $id)->update([
+            'product_name' => $request->product_name,
+            'unit' => $request->unit,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'created_date' => date_create(),
+            'product_Ingredient' => trim($request->product_ingredient),
+            'dosage_forms' => $request->dosage_forms,
+            'is_prescription_drugs' => 0,
+            'warning' => trim($request->warning),
+            'effect' => trim($request->effect),
+            'dosage' => trim($request->dosage),
+            'manufacturer_id' => $request->manufacturers,
+            'category_id' => $request->categories,
+            'country_id' => $request->countries,
+            'description' => '',
+        ]);
+
+        if($filename != "")
+        {
+            $productId = $id;
+            $image_edit = ProductImages::where('product_id', $id)->update([
+                'path' => $filename,
+            ]);
+        }
+
+        $categories = Category::all();
+        $countries = Country::all();
+        $manufacturers = Manufacturer::all();
+        $product = Product::where("product_id",$id)->first();
+        $productImage = ProductImages::where("product_id",$id)->first();
+        return view('admin.edit_product', compact(['categories', 'countries', 'manufacturers', 'productImage', 'product']));
     }
 
     public function addProductPage()
@@ -62,12 +119,12 @@ class AdminProductController extends Controller
             'price' => $request->price,
             'quantity' => $request->quantity,
             'created_date' => date_create(),
-            'product_Ingredient' => $request->product_ingredient,
+            'product_Ingredient' => trim($request->product_ingredient),
             'dosage_forms' => $request->dosage_forms,
             'is_prescription_drugs' => 0,
-            'warning' => $request->warning,
-            'effect' => $request->effect,
-            'dosage' => $request->dosage,
+            'warning' => trim($request->warning),
+            'effect' => trim($request->effect),
+            'dosage' => trim($request->dosage),
             'manufacturer_id' => $request->manufacturers,
             'category_id' => $request->categories,
             'country_id' => $request->countries,
@@ -87,12 +144,17 @@ class AdminProductController extends Controller
 
     public function delProduct($id)
     {
-        $record = Product::where('product_id', $id)->first();
-        if(file_exists(public_path('images/'.$record->Img)))
+        $productImageDel = ProductImages::where("product_id",$id);
+        foreach ($productImageDel as $p)
         {
-            unlink(public_path('images/'.$record->Img));
+            if(file_exists(public_path('images/'.$p->path)))
+            {
+                unlink(public_path('images/'.$p->path));
+            }
         }
-        Product::where('product_id', $id)->delete();
+        $productDel = Product::where('product_id', $id);
+        $productImageDel->delete();
+        $productDel->delete();
 
         $products = Product::paginate(10);
         $productImages = ProductImages::all();

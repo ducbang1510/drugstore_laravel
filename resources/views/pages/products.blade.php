@@ -56,7 +56,7 @@
                                         }
                                      }
                                  ?>"
-                                 alt="Image" width="270" height="370">
+                                 alt="Image">
                         </a>
                         <h3 class="text-dark product-name">
                             <a

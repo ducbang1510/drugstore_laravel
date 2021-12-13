@@ -79,10 +79,12 @@
                                                 @php if(isset($p->created_date)) { echo $p->created_date; } @endphp
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Sửa</a>
+                                                <a href="{{ route('edit-product-page', ['product_id'=>$p->product_id]) }}"
+                                                   class="text-indigo-600 hover:text-indigo-900">Sửa</a>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Xoá</a>
+                                                <a href="{{ route('del-product', ['product_id'=>$p->product_id]) }}"
+                                                   class="text-indigo-600 hover:text-indigo-900">Xoá</a>
                                             </td>
                                         </tr>
                                     @endforeach

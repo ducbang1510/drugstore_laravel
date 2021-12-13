@@ -78,7 +78,7 @@
                                      }
                                  }
                                  ?>"
-                                 alt="Image" width="270" height="370"
+                                 alt="Image"
                             >
                         </a>
                         <h3 class="text-dark product-name">
@@ -124,7 +124,7 @@
                                              }
                                          }
                                          ?>"
-                                         alt="Image" width="346.66" height="475.05"
+                                         alt="Image"
                                     >
                                 </a>
                                 <h3 class="text-dark product-name">
