@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:sanctum', 'verified']);
+    }
+
     public function listProducts()
     {
         $products = Product::paginate(10);
@@ -82,12 +87,12 @@ class AdminProductController extends Controller
 
     public function delProduct($id)
     {
-        $record = Product::where('ProductId', $id)->first();
+        $record = Product::where('product_id', $id)->first();
         if(file_exists(public_path('images/'.$record->Img)))
         {
             unlink(public_path('images/'.$record->Img));
         }
-        Product::where('ProductId', $id)->delete();
+        Product::where('product_id', $id)->delete();
 
         $products = Product::paginate(10);
         $productImages = ProductImages::all();

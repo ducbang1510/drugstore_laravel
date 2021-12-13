@@ -18,12 +18,6 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('add-product-page') }}" :active="request()->routeIs('add-product')">
-                        {{ __('Add Product') }}
-                    </x-jet-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('list-products') }}" :active="request()->routeIs('list-products')">
                         {{ __('Sản Phẩm') }}
                     </x-jet-nav-link>
