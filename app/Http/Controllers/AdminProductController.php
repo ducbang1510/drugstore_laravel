@@ -24,6 +24,60 @@ class AdminProductController extends Controller
         return view('admin.list_products', compact(['products', 'productImages']));
     }
 
+    public function addProductPage()
+    {
+        $categories = Category::all();
+        $countries = Country::all();
+        $manufacturers = Manufacturer::all();
+        return view('admin.add_product', compact(['categories', 'countries', 'manufacturers']));
+    }
+
+    public function addProduct(Request $request)
+    {
+        $messages = [
+            'product_name.required' => 'Bạn phải nhập tên sản phẩm !',
+            'price.required' => 'Bạn phải nhập giá sản phẩm',
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'product_name' => 'required',
+            'price' => 'required',
+        ], $messages)->validate();
+
+        $filename = "";
+        if ($request->file('fileUpload')->isValid()) {
+            $filename = $request->fileUpload->getClientOriginalName();
+            $request->fileUpload->move('images/', $filename);
+        }
+        $product_add = Product::create([
+            'product_name' => $request->product_name,
+            'unit' => $request->unit,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'created_date' => date_create(),
+            'product_Ingredient' => trim($request->product_ingredient),
+            'dosage_forms' => $request->dosage_forms,
+            'is_prescription_drugs' => 0,
+            'warning' => trim($request->warning),
+            'effect' => trim($request->effect),
+            'dosage' => trim($request->dosage),
+            'manufacturer_id' => $request->manufacturers,
+            'category_id' => $request->categories,
+            'country_id' => $request->countries,
+            'description' => '',
+        ]);
+        $productId = $product_add->id;
+
+        $image_add = ProductImages::create([
+            'path' => $filename,
+            'product_id' => $productId,
+        ]);
+
+        $products = Product::paginate(10);
+        $productImages = ProductImages::all();
+        return view('admin.list_products', compact(['products', 'productImages']));
+    }
+
     public function editProductPage($id)
     {
         $categories = Category::all();
@@ -86,60 +140,6 @@ class AdminProductController extends Controller
         $product = Product::where("product_id",$id)->first();
         $productImage = ProductImages::where("product_id",$id)->first();
         return view('admin.edit_product', compact(['categories', 'countries', 'manufacturers', 'productImage', 'product']));
-    }
-
-    public function addProductPage()
-    {
-        $categories = Category::all();
-        $countries = Country::all();
-        $manufacturers = Manufacturer::all();
-        return view('admin.add_product', compact(['categories', 'countries', 'manufacturers']));
-    }
-
-    public function addProduct(Request $request)
-    {
-        $messages = [
-            'product_name.required' => 'Bạn phải nhập tên sản phẩm !',
-            'price.required' => 'Bạn phải nhập giá sản phẩm',
-        ];
-
-        $validator = Validator::make($request->all(), [
-            'product_name' => 'required',
-            'price' => 'required',
-        ], $messages)->validate();
-
-        $filename = "";
-        if ($request->file('fileUpload')->isValid()) {
-            $filename = $request->fileUpload->getClientOriginalName();
-            $request->fileUpload->move('images/', $filename);
-        }
-        $product_add = Product::create([
-            'product_name' => $request->product_name,
-            'unit' => $request->unit,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
-            'created_date' => date_create(),
-            'product_Ingredient' => trim($request->product_ingredient),
-            'dosage_forms' => $request->dosage_forms,
-            'is_prescription_drugs' => 0,
-            'warning' => trim($request->warning),
-            'effect' => trim($request->effect),
-            'dosage' => trim($request->dosage),
-            'manufacturer_id' => $request->manufacturers,
-            'category_id' => $request->categories,
-            'country_id' => $request->countries,
-            'description' => '',
-        ]);
-        $productId = $product_add->id;
-
-        $image_add = ProductImages::create([
-            'path' => $filename,
-            'product_id' => $productId,
-        ]);
-
-        $products = Product::paginate(10);
-        $productImages = ProductImages::all();
-        return view('admin.list_products', compact(['products', 'productImages']));
     }
 
     public function delProduct($id)

@@ -20,16 +20,25 @@ Route::get('/products', ['as' => 'shop', 'uses' => 'ProductController@index']);
 Route::get('productdetail/{product_id}', ['as'=>'prodDetail', 'uses' => 'ProductController@getProductDetail']);
 
 // Backend
+// Dashboard
 Route::get('/admin/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@index']);
+// Product
 Route::get('admin/products/list-products', ['as' => 'list-products', 'uses' => 'AdminProductController@listProducts']);
-
 Route::get('admin/products/add-product', ['as' => 'add-product-page', 'uses' => 'AdminProductController@addProductPage']);
 Route::post('', ['as' => 'add-product', 'uses' => 'AdminProductController@addProduct']);
-
 Route::get('admin/products/edit-product/{product_id}', ['as' => 'edit-product-page', 'uses' => 'AdminProductController@editProductPage']);
 Route::post('admin/products/edit-product/{product_id}', ['as' => 'edit-product', 'uses' => 'AdminProductController@editProduct']);
-
 Route::get('admin/products/list-products/{product_id}', ['as' => 'del-product', 'uses' => 'AdminProductController@delProduct']);
+// Category
+Route::get('admin/categories/list-categories', ['as' => 'list-categories', 'uses' => 'AdminCategoryController@listCategories']);
+Route::get('admin/categories/add-category', ['as' => 'add-category-page', 'uses' => 'AdminCategoryController@addCategoryPage']);
+Route::post('', ['as' => 'add-category', 'uses' => 'AdminCategoryController@addCategory']);
+Route::get('admin/categories/edit-category/{category_id}', ['as' => 'edit-category-page', 'uses' => 'AdminCategoryController@editCategoryPage']);
+Route::post('admin/categories/edit-category/{category_id}', ['as' => 'edit-category', 'uses' => 'AdminCategoryController@editCategory']);
+// Manufacturer
+// Country
+// Employee
+// User
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');
