@@ -36,7 +36,17 @@ Route::post('', ['as' => 'add-category', 'uses' => 'AdminCategoryController@addC
 Route::get('admin/categories/edit-category/{category_id}', ['as' => 'edit-category-page', 'uses' => 'AdminCategoryController@editCategoryPage']);
 Route::post('admin/categories/edit-category/{category_id}', ['as' => 'edit-category', 'uses' => 'AdminCategoryController@editCategory']);
 // Manufacturer
+Route::get('admin/manufacturers/list-manufacturers', ['as' => 'list-manufacturers', 'uses' => 'AdminManufacturerController@listManufacturers']);
+Route::get('admin/manufacturers/add-manufacturer', ['as' => 'add-manufacturer-page', 'uses' => 'AdminManufacturerController@addManufacturerPage']);
+Route::post('', ['as' => 'add-manufacturer', 'uses' => 'AdminManufacturerController@addManufacturer']);
+Route::get('admin/manufacturers/edit-manufacturer/{manufacturer_id}', ['as' => 'edit-manufacturer-page', 'uses' => 'AdminManufacturerController@editManufacturerPage']);
+Route::post('admin/manufacturers/edit-manufacturer/{manufacturer_id}', ['as' => 'edit-manufacturer', 'uses' => 'AdminManufacturerController@editManufacturer']);
 // Country
+Route::get('admin/countries/list-countries', ['as' => 'list-countries', 'uses' => 'AdminCountryController@listCountries']);
+Route::get('admin/countries/add-country', ['as' => 'add-country-page', 'uses' => 'AdminCountryController@addCountryPage']);
+Route::post('', ['as' => 'add-country', 'uses' => 'AdminCountryController@addCountry']);
+Route::get('admin/countries/edit-country/{country_id}', ['as' => 'edit-country-page', 'uses' => 'AdminCountryController@editCountryPage']);
+Route::post('admin/countries/edit-country/{country_id}', ['as' => 'edit-country', 'uses' => 'AdminCountryController@editCountry']);
 // Employee
 // User
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
