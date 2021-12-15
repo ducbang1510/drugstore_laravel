@@ -18,7 +18,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('add-product')}} " enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('add-product') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="product_name">Tên sản phẩm</label>
