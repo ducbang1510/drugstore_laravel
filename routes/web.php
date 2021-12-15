@@ -54,7 +54,15 @@ Route::post('', ['as' => 'add-employee', 'uses' => 'AdminEmployeeController@addE
 Route::get('admin/employees/edit-employee/{employee_id}', ['as' => 'edit-employee-page', 'uses' => 'AdminEmployeeController@editEmployeePage']);
 Route::post('admin/employees/edit-employee/{employee_id}', ['as' => 'edit-employee', 'uses' => 'AdminEmployeeController@editEmployee']);
 // Customer
+Route::get('admin/customers/list-customers', ['as' => 'list-customers', 'uses' => 'AdminCustomerController@listCustomers']);
+Route::get('admin/customers/add-customer', ['as' => 'add-customer-page', 'uses' => 'AdminCustomerController@addCustomerPage']);
+Route::post('', ['as' => 'add-customer', 'uses' => 'AdminCustomerController@addCustomer']);
+Route::get('admin/customers/edit-customer/{customer_id}', ['as' => 'edit-customer-page', 'uses' => 'AdminCustomerController@editCustomerPage']);
+Route::post('admin/customers/edit-customer/{customer_id}', ['as' => 'edit-customer', 'uses' => 'AdminCustomerController@editCustomer']);
 // User
+Route::get('admin/users/list-users', ['as' => 'list-users', 'uses' => 'AdminUserController@listUsers']);
+Route::get('admin/users/edit-user/{user_id}', ['as' => 'edit-user-page', 'uses' => 'AdminUserController@editUserPage']);
+Route::post('admin/users/edit-user/{user_id}', ['as' => 'edit-user', 'uses' => 'AdminUserController@editUser']);
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');
