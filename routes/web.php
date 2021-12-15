@@ -63,6 +63,7 @@ Route::post('admin/customers/edit-customer/{customer_id}', ['as' => 'edit-custom
 Route::get('admin/users/list-users', ['as' => 'list-users', 'uses' => 'AdminUserController@listUsers']);
 Route::get('admin/users/edit-user/{user_id}', ['as' => 'edit-user-page', 'uses' => 'AdminUserController@editUserPage']);
 Route::post('admin/users/edit-user/{user_id}', ['as' => 'edit-user', 'uses' => 'AdminUserController@editUser']);
+// Order
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');
