@@ -16,12 +16,12 @@ class AdminCountryController extends Controller
     public function listCountries()
     {
         $countries = Country::orderBy('country_id')->paginate(10);
-        return view('admin.list_countries', compact(['countries']));
+        return view('admin.country.list_countries', compact(['countries']));
     }
 
     public function addCountryPage()
     {
-        return view('admin.add_country');
+        return view('admin.country.add_country');
     }
 
     public function addCountry(Request $request)
@@ -39,13 +39,13 @@ class AdminCountryController extends Controller
         ]);
 
         $countries = Country::orderBy('country_id')->paginate(10);
-        return view('admin.list_countries', compact(['countries']));
+        return view('admin.country.list_countries', compact(['countries']));
     }
 
     public function editCountryPage($id)
     {
         $country = Country::where('country_id', $id)->first();
-        return view('admin.edit_country', compact(['country']));
+        return view('admin.country.edit_country', compact(['country']));
     }
 
     public function editCountry($id, Request $request)
@@ -63,6 +63,6 @@ class AdminCountryController extends Controller
         ]);
 
         $country = Country::where('country_id', $id)->first();
-        return view('admin.edit_country', compact(['country']));
+        return view('admin.country.edit_country', compact(['country']));
     }
 }

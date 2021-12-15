@@ -21,7 +21,7 @@ class AdminProductController extends Controller
     {
         $products = Product::paginate(10);
         $productImages = ProductImages::all();
-        return view('admin.list_products', compact(['products', 'productImages']));
+        return view('admin.product.list_products', compact(['products', 'productImages']));
     }
 
     public function addProductPage()
@@ -29,7 +29,7 @@ class AdminProductController extends Controller
         $categories = Category::all();
         $countries = Country::all();
         $manufacturers = Manufacturer::all();
-        return view('admin.add_product', compact(['categories', 'countries', 'manufacturers']));
+        return view('admin.product.add_product', compact(['categories', 'countries', 'manufacturers']));
     }
 
     public function addProduct(Request $request)
@@ -75,7 +75,7 @@ class AdminProductController extends Controller
 
         $products = Product::paginate(10);
         $productImages = ProductImages::all();
-        return view('admin.list_products', compact(['products', 'productImages']));
+        return view('admin.product.list_products', compact(['products', 'productImages']));
     }
 
     public function editProductPage($id)
@@ -85,7 +85,7 @@ class AdminProductController extends Controller
         $manufacturers = Manufacturer::all();
         $product = Product::where("product_id",$id)->first();
         $productImage = ProductImages::where("product_id",$id)->first();
-        return view('admin.edit_product', compact(['categories', 'countries', 'manufacturers', 'productImage', 'product']));
+        return view('admin.product.edit_product', compact(['categories', 'countries', 'manufacturers', 'productImage', 'product']));
     }
 
     public function editProduct($id, Request $request)
@@ -139,7 +139,7 @@ class AdminProductController extends Controller
         $manufacturers = Manufacturer::all();
         $product = Product::where("product_id",$id)->first();
         $productImage = ProductImages::where("product_id",$id)->first();
-        return view('admin.edit_product', compact(['categories', 'countries', 'manufacturers', 'productImage', 'product']));
+        return view('admin.product.edit_product', compact(['categories', 'countries', 'manufacturers', 'productImage', 'product']));
     }
 
     public function delProduct($id)
@@ -158,6 +158,6 @@ class AdminProductController extends Controller
 
         $products = Product::paginate(10);
         $productImages = ProductImages::all();
-        return view('admin.list_products', compact(['products', 'productImages']));
+        return view('admin.product.list_products', compact(['products', 'productImages']));
     }
 }

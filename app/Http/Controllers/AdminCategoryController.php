@@ -16,12 +16,12 @@ class AdminCategoryController extends Controller
     public function listCategories()
     {
         $categories = Category::orderBy('category_id')->paginate(10);
-        return view('admin.list_categories', compact(['categories']));
+        return view('admin.category.list_categories', compact(['categories']));
     }
 
     public function addCategoryPage()
     {
-        return view('admin.add_category');
+        return view('admin.category.add_category');
     }
 
     public function addCategory(Request $request)
@@ -39,13 +39,13 @@ class AdminCategoryController extends Controller
         ]);
 
         $categories = Category::paginate(10);
-        return view('admin.list_categories', compact(['categories']));
+        return view('admin.category.list_categories', compact(['categories']));
     }
 
     public function editCategoryPage($id)
     {
         $category = Category::where('category_id', $id)->first();
-        return view('admin.edit_category', compact(['category']));
+        return view('admin.category.edit_category', compact(['category']));
     }
 
     public function editCategory($id, Request $request)
@@ -63,6 +63,6 @@ class AdminCategoryController extends Controller
         ]);
 
         $category = Category::where('category_id', $id)->first();
-        return view('admin.edit_category', compact(['category']));
+        return view('admin.category.edit_category', compact(['category']));
     }
 }

@@ -16,12 +16,12 @@ class AdminManufacturerController extends Controller
     public function listManufacturers()
     {
         $manufacturers = Manufacturer::orderBy('manufacturer_id')->paginate(10);
-        return view('admin.list_manufacturers', compact(['manufacturers']));
+        return view('admin.manufacturer.list_manufacturers', compact(['manufacturers']));
     }
 
     public function addManufacturerPage()
     {
-        return view('admin.add_manufacturer');
+        return view('admin.manufacturer.add_manufacturer');
     }
 
     public function addManufacturer(Request $request)
@@ -42,13 +42,13 @@ class AdminManufacturerController extends Controller
         ]);
 
         $manufacturers = Manufacturer::paginate(10);
-        return view('admin.list_manufacturers', compact(['manufacturers']));
+        return view('admin.manufacturer.list_manufacturers', compact(['manufacturers']));
     }
 
     public function editManufacturerPage($id)
     {
         $manufacturer = Manufacturer::where('manufacturer_id', $id)->first();
-        return view('admin.edit_manufacturer', compact(['manufacturer']));
+        return view('admin.manufacturer.edit_manufacturer', compact(['manufacturer']));
     }
 
     public function editManufacturer($id, Request $request)
@@ -69,6 +69,6 @@ class AdminManufacturerController extends Controller
         ]);
 
         $manufacturer = Manufacturer::where('manufacturer_id', $id)->first();
-        return view('admin.edit_manufacturer', compact(['manufacturer']));
+        return view('admin.manufacturer.edit_manufacturer', compact(['manufacturer']));
     }
 }

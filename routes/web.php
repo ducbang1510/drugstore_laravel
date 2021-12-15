@@ -48,6 +48,12 @@ Route::post('', ['as' => 'add-country', 'uses' => 'AdminCountryController@addCou
 Route::get('admin/countries/edit-country/{country_id}', ['as' => 'edit-country-page', 'uses' => 'AdminCountryController@editCountryPage']);
 Route::post('admin/countries/edit-country/{country_id}', ['as' => 'edit-country', 'uses' => 'AdminCountryController@editCountry']);
 // Employee
+Route::get('admin/employees/list-employees', ['as' => 'list-employees', 'uses' => 'AdminEmployeeController@listEmployees']);
+Route::get('admin/employees/add-employee', ['as' => 'add-employee-page', 'uses' => 'AdminEmployeeController@addEmployeePage']);
+Route::post('', ['as' => 'add-employee', 'uses' => 'AdminEmployeeController@addEmployee']);
+Route::get('admin/employees/edit-employee/{employee_id}', ['as' => 'edit-employee-page', 'uses' => 'AdminEmployeeController@editEmployeePage']);
+Route::post('admin/employees/edit-employee/{employee_id}', ['as' => 'edit-employee', 'uses' => 'AdminEmployeeController@editEmployee']);
+// Customer
 // User
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
