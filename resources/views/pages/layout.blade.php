@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="frontend_plugin/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="frontend_plugin/css/aos.css">
     <link rel="stylesheet" href="frontend_plugin/css/style.css">
-
 </head>
 
 <body>
@@ -44,8 +43,8 @@
                 <div class="main-nav d-none d-lg-block">
                     <nav class="site-navigation text-right text-md-center" role="navigation">
                         <ul class="site-menu js-clone-nav d-none d-lg-block">
-                            <li class="active"><a href="{{route('home')}}">Trang Chủ</a></li>
-                            <li><a href="{{route('shop')}}">Sản Phẩm</a></li>
+                            <li class="active"><a href="{{ route('home') }}">Trang Chủ</a></li>
+                            <li><a href="{{ route('shop') }}">Sản Phẩm</a></li>
                             <li class="has-children">
                                 <a href="#">Phân Loại</a>
                                 <ul class="dropdown">
@@ -54,8 +53,8 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li><a href="about.html">Thông Tin</a></li>
-                            <li><a href="contact.html">Liên Lạc</a></li>
+                            <li><a href="{{ route('about') }}">Thông Tin</a></li>
+                            <li><a href="{{ route('contact') }}">Liên Lạc</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -63,9 +62,9 @@
                     <a href="#" class="icons-btn d-inline-block js-search-open">
                         <span class="icon-search-btn icon-search"></span>
                     </a>
-                    <a href="cart.html" class="icons-btn d-inline-block bag">
+                    <a href="{{ route('showCart') }}" class="icons-btn d-inline-block bag">
                         <span class="icon-bag-btn icon-shopping-bag"></span>
-                        <span class="icon-number-bag number">2</span>
+                        <span class="icon-number-bag number">{{ Cart::count() ?? '0' }}</span>
                     </a>
                     <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none">
                         <span class="icon-menu"></span>

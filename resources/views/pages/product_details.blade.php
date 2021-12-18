@@ -21,8 +21,8 @@
                             <span>Giá:</span> @php if(isset($prod->price)) { echo number_format($prod->price); } @endphp VND<br>
                         </strong>
                     </p>
-                    <form action="{{route('cart')}}" method="GET">
-                        {{ csrf_field() }}
+                    <form action="{{ route('cart') }}" method="POST">
+                        @csrf
                         <div class="mb-5">
                             <div class="input-group mb-3" style="max-width: 220px;">
                                 <div class="input-group-prepend">
@@ -33,7 +33,7 @@
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                                 </div>
-                                <input name="product_id_hidden" type="hidden" value="{{$prod->product_id}}}">
+                                <input name="product_id_hidden" type="hidden" value="{{ $prod->product_id }}}">
                             </div>
                         </div>
                         <p>

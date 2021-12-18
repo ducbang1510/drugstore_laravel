@@ -13,14 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // Frontend
+// Home
 Route::get('/', 'HomeController@index');
 Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
+// Products
 Route::get('/products', ['as' => 'shop', 'uses' => 'ProductController@index']);
-
+// Product-Details
 Route::get('product-details/{product_id}', ['as'=>'prodDetail', 'uses' => 'ProductController@getProductDetail']);
-
+// Cart (show, add, update, remove-item)
 Route::get('/show-cart', ['as' => 'showCart', 'uses' => 'CartController@showCart']);
-Route::get('/cart', ['as' => 'cart', 'uses' => 'CartController@addCart']);
+Route::post('/cart/add-cart', ['as' => 'cart', 'uses' => 'CartController@addCart']);
+Route::get('/cart/remove-item/{itemId},', ['as' => 'remove-item', 'uses' => 'CartController@removeItem']);
+Route::post('/cart/update-item/{itemId}', ['as' => 'update-item', 'uses' => 'CartController@updateItem']);
+Route::get('/cart/destroy-cart', ['as' => 'destroy-cart', 'uses' => 'CartController@destroyCart']);
+// Checkout
+Route::get('/checkout', ['as' => 'checkout', 'uses' => 'CheckoutController@index']);
+// About
+Route::get('/about', ['as' => 'about', 'uses' => 'AboutController@index']);
+// Contact
+Route::get('/contact', ['as' => 'contact', 'uses' => 'ContactController@index']);
 
 // Backend
 // Dashboard

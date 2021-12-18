@@ -23,7 +23,7 @@ class CartController extends Controller
             'weight' => 0,
             'options' => ['image' => $productImage],
         ]);
-        return redirect()->route('showCart', ['product_id'=>$product->product_id])->with('message','Thêm vào giỏ hàng thành công');
+        return redirect()->route('showCart')->with('message', 'Thêm vào giỏ hàng thành công');
     }
 
     public function showCart()
@@ -31,5 +31,26 @@ class CartController extends Controller
         $cart = Cart::content();
         //$cart = Cart::instance('qty')->content();
         return view('pages.cart', compact(['cart']));
+    }
+
+    public function updateItem($itemId, Request $request)
+    {
+        Cart::update(
+            $itemId,
+            ['qty' => $request->input('quantity'.$itemId)]
+        );
+        return redirect()->route('showCart')->with('message', 'Cập nhật giỏ hàng thành công');
+    }
+
+    public function removeItem($itemId)
+    {
+        Cart::remove($itemId);
+        return redirect()->route('showCart')->with('message', 'Xoá sản phẩm thành công');
+    }
+
+    public function destroyCart()
+    {
+        Cart::destroy();
+        return redirect()->route('showCart')->with('message', 'Đã xoá toàn bộ giỏ hàng');
     }
 }

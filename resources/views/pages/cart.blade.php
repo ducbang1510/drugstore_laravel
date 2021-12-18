@@ -43,34 +43,31 @@
                                 <tr>
                                     <td class="product-thumbnail">
                                         <img src="images/{{ $item->options->image }}" alt="{{ $item->id }}" class="product-thumbnail-img img-fluid">
-{{--                                        <img src="images/<?php if (isset($productImages)) if (isset($item)) {--}}
-{{--                                            foreach ($productImages as $i)--}}
-{{--                                                if ($i->product_id == $item->id) {--}}
-{{--                                                    echo $i->path;--}}
-{{--                                                    break;--}}
-{{--                                                }--}}
-{{--                                        } ?>"--}}
-{{--                                             alt="{{ $item->id }}"--}}
-{{--                                             class="product-thumbnail-img img-fluid">--}}
                                     </td>
                                     <td class="product-names">
                                         <h2 class="h5 text-black">{{ $item->name }}</h2>
                                     </td>
                                     <td>{{ $item->price }}</td>
                                     <td>
-                                        <div class="input-group mb-3" style="max-width: 120px;">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                        <form action="{{ route('update-item', ['itemId'=>$item->rowId]) }}" method="POST" id="{{ $item->rowId }}">
+                                            @csrf
+                                            <div class="input-group mb-3" style="max-width: 120px;">
+                                                <div class="input-group-prepend">
+                                                    <button type="submit" class="btn btn-outline-primary js-btn-minus">&minus;</button>
+                                                </div>
+                                                <input type="number"
+                                                       class="form-control text-center"
+                                                       name="quantity{{ $item->rowId }}"
+                                                       value="{{ $item->qty }}"
+                                                       aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-outline-primary js-btn-plus">&plus;</button>
+                                                </div>
                                             </div>
-                                            <input type="text" class="form-control text-center" value="{{$item->qty}}" placeholder=""
-                                                   aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </td>
                                     <td>{{ $item->subtotal }}</td>
-                                    <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
+                                    <td><a href="{{ route('remove-item', ['itemId'=>$item->rowId]) }}" class="btn btn-primary height-auto btn-sm">X</a></td>
                                 </tr>
                                 </tbody>
                             @endforeach
@@ -86,20 +83,25 @@
                             <button class="cart-btn btn btn-primary btn-md btn-block">Cập nhật giỏ hàng</button>
                         </div>
                         <div class="col-md-6">
-                            <button class="cart-btn btn btn-outline-primary btn-md btn-block">Tiếp tục mua sắm</button>
+                            <button onclick="location.href='{{ route('shop') }}'" type="button"
+                                    class="cart-btn btn btn-outline-primary btn-md btn-block">Tiếp tục mua sắm</button>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <label class="cart-label-discount text-black h4" for="coupon">Phiếu giảm giá</label>
-                            <p>Nhập mã phiếu giảm giá tại đây.</p>
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <button onclick="location.href='{{ route('destroy-cart') }}'" type="button"
+                                class="cart-btn btn btn-primary btn-md btn-block">Xoá toàn bộ giỏ hàng</button>
                         </div>
-                        <div class="col-md-8 mb-3 mb-md-0">
-                            <input type="text" class="form-control py-3" id="coupon" placeholder="Mã khuyến mãi">
-                        </div>
-                        <div class="col-md-4">
-                            <button class="cart-discount-btn btn btn-primary btn-md px-4">Áp dụng</button>
-                        </div>
+{{--                        <div class="col-md-12">--}}
+{{--                            <label class="cart-label-discount text-black h4" for="coupon">Phiếu giảm giá</label>--}}
+{{--                            <p>Nhập mã phiếu giảm giá tại đây.</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-8 mb-3 mb-md-0">--}}
+{{--                            <input type="text" class="form-control py-3" id="coupon" placeholder="Mã khuyến mãi">--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-4">--}}
+{{--                            <button class="cart-discount-btn btn btn-primary btn-md px-4">Áp dụng</button>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
                 <div class="col-md-6 pl-5">
@@ -115,12 +117,12 @@
                                     <span class="cart-total text-black">Tổng: </span>
                                 </div>
                                 <div class="col-md-8 text-right">
-                                    <strong class="cart-total text-black">{{ Cart::Total() }}</strong>
+                                    <strong class="cart-total text-black">{{ Cart::priceTotal() }}</strong>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn-primary btn-lg btn-block" onclick="window.location='checkout'">
+                                    <button class="btn btn-primary btn-lg btn-block" onclick="location.href='{{ route('checkout') }}'">
                                         Thanh toán</button>
                                 </div>
                             </div>
