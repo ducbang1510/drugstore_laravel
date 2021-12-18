@@ -17,7 +17,10 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/products', ['as' => 'shop', 'uses' => 'ProductController@index']);
 
-Route::get('productdetail/{product_id}', ['as'=>'prodDetail', 'uses' => 'ProductController@getProductDetail']);
+Route::get('product-details/{product_id}', ['as'=>'prodDetail', 'uses' => 'ProductController@getProductDetail']);
+
+Route::get('/show-cart', ['as' => 'showCart', 'uses' => 'CartController@showCart']);
+Route::get('/cart', ['as' => 'cart', 'uses' => 'CartController@addCart']);
 
 // Backend
 // Dashboard

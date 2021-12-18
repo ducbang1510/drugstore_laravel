@@ -4,7 +4,6 @@
 ?>
 @extends('pages.layout')
 @section('content')
-
     <div class="product-detail site-section">
         <div class="container">
             <div class="row">
@@ -22,23 +21,25 @@
                             <span>Giá:</span> @php if(isset($prod->price)) { echo number_format($prod->price); } @endphp VND<br>
                         </strong>
                     </p>
-
-                    <div class="mb-5">
-                        <div class="input-group mb-3" style="max-width: 220px;">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                            </div>
-                            <input type="text" class="form-control text-center" value="1" placeholder=""
-                                   aria-label="Example text with button addon" aria-describedby="button-addon1">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                    <form action="{{route('cart')}}" method="GET">
+                        {{ csrf_field() }}
+                        <div class="mb-5">
+                            <div class="input-group mb-3" style="max-width: 220px;">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                </div>
+                                <input name="quantity" type="text" class="form-control text-center" min="1" value="1" placeholder=""
+                                       aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                </div>
+                                <input name="product_id_hidden" type="hidden" value="{{$prod->product_id}}}">
                             </div>
                         </div>
-                    </div>
-                    <p>
-                        <a href="cart.html" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Thêm vào giỏ hàng</a>
-                    </p>
-
+                        <p>
+                            <button type="submit" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Thêm vào giỏ hàng</button>
+                        </p>
+                    </form>
                     <div class="mt-6">
                         <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
                             <li class="nav-item">
@@ -165,4 +166,4 @@
             </div>
         </div>
     </div>
-@endsection
+@stop
