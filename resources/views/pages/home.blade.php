@@ -13,7 +13,7 @@
                         <h2 class="sub-title">Bài thuốc hiệu quả, bài thuốc mỗi ngày</h2>
                         <h1>Welcome To Pharma Group</h1>
                         <p>
-                            <a  href="#"  class="btn btn-primary px-5 py-3">Mua Ngay</a>
+                            <a href="{{ route('shop') }}" class="btn btn-primary px-5 py-3">Mua Ngay</a>
                         </p>
                     </div>
                 </div>
@@ -215,7 +215,7 @@
         <div class="container">
             <div class="row align-items-stretch">
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    <a href="#" class="banner-1 h-100 d-flex" style="background-image: url(<?php echo $bg1; ?>);">
+                    <a href="{{ route('shop') }}" class="banner-1 h-100 d-flex" style="background-image: url(<?php echo $bg1; ?>);">
                         <div class="banner-1-inner align-self-center">
                             <h2>Sản phẩm Pharma Group</h2>
                             <p>Các sản phẩm được Pharma Group cung cấp ra thị trường được mang tiêu chuẩn quốc tế
@@ -225,7 +225,7 @@
                     </a>
                 </div>
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    <a href="#" class="banner-1 h-100 d-flex" style="background-image: url(<?php echo $bg2; ?>);">
+                    <a href="{{ route('shop') }}" class="banner-1 h-100 d-flex" style="background-image: url(<?php echo $bg2; ?>);">
                         <div class="banner-1-inner ml-auto  align-self-center">
                             <h2>Chuyên gia đánh giá</h2>
                             <p>Quy trình kiếm tra, khảo sát chất lượng sản phẩm được các chuyên gia hàng đầu thế giới

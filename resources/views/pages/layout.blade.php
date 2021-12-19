@@ -27,8 +27,9 @@
         <div class="search-wrap">
             <div class="container">
                 <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-                <form action="#" method="post">
-                    <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+                <form action="{{ route('search-by-key') }}" method="POST">
+                    @csrf
+                    <input name="search-key" type="text" class="form-control" placeholder="Nhập từ khoá và nhấn Enter">
                 </form>
             </div>
         </div>
@@ -37,7 +38,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div class="logo">
                     <div class="site-logo">
-                        <a href="{{route('home')}}" class="js-logo-clone">Pharma Group</a>
+                        <a href="{{ route('home') }}" class="js-logo-clone">Pharma Group</a>
                     </div>
                 </div>
                 <div class="main-nav d-none d-lg-block">
@@ -46,10 +47,10 @@
                             <li class="active"><a href="{{ route('home') }}">Trang Chủ</a></li>
                             <li><a href="{{ route('shop') }}">Sản Phẩm</a></li>
                             <li class="has-children">
-                                <a href="#">Phân Loại</a>
+                                <a href="#">Danh mục</a>
                                 <ul class="dropdown">
                                     @foreach($categories as $c)
-                                        <li><a href="#">{{$c -> category_name}}</a></li>
+                                        <li><a href="{{ route('search-by-cate', ['category'=>$c->category_id]) }}">{{ $c->category_name }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>

@@ -19,7 +19,7 @@
                 <div class="col-lg-6">
                     <h3 class="mb-3 h6 filter-title text-black d-block">Lọc theo giá</h3>
                     <div id="slider-range" class="border-primary"></div>
-                    <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+                    <input type="text" name="amount" id="amount" class="form-control border-0 pl-0 bg-white" disabled=""/>
                 </div>
                 <div class="col-lg-6">
                     <h3 class="mb-3 h6 filter-title text-black d-block">Lọc theo tham khảo</h3>
@@ -29,12 +29,12 @@
                             data-toggle="dropdown"
                     >Mặc định </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                        <a class="dropdown-item" href="#">Mặc định</a>
-                        <a class="dropdown-item" href="#">Tên A - Z</a>
-                        <a class="dropdown-item" href="#">Tên Z- A</a>
+                        <a class="dropdown-item" href="{{ route('sort-products', ['sType'=>'default']) }}">Mặc định</a>
+                        <a class="dropdown-item" href="{{ route('sort-products', ['sType'=>'name a-z']) }}">Tên A - Z</a>
+                        <a class="dropdown-item" href="{{ route('sort-products', ['sType'=>'name z-a']) }}">Tên Z- A</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Giá tăng dần</a>
-                        <a class="dropdown-item" href="#">Giá giảm dần</a>
+                        <a class="dropdown-item" href="{{ route('sort-products', ['sType'=>'price asc']) }}">Giá tăng dần</a>
+                        <a class="dropdown-item" href="{{ route('sort-products', ['sType'=>'price desc']) }}">Giá giảm dần</a>
                     </div>
                 </div>
             </div>
@@ -75,13 +75,25 @@
                 <div class="col-md-12 text-center">
                     <div class="site-block-27">
                         <ul>
-                            <li><a href="#">&lt;</a></li>
-                            <li class="active"><span>1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&gt;</a></li>
+                            @if($products->onFirstPage())
+                                <li><a href="{{ $products->previousPageUrl() }}" class="disabled">&lt;</a></li>
+                            @else
+                                <li><a href="{{ $products->previousPageUrl() }}">&lt;</a></li>
+                            @endif
+
+                            @for($p = 1; $p <= $products->lastPage(); $p++)
+                                @if($products->currentPage() === $p)
+                                    <li class="active"><a href="{{ $products->url($p) }}">{{ $p }}</a></li>
+                                @else
+                                    <li><a href="{{ $products->url($p) }}">{{ $p }}</a></li>
+                                @endif
+                            @endfor
+
+                            @if($products->currentPage() === $products->lastPage())
+                                <li><a href="{{ $products->nextPageUrl() }}" class="disabled">&gt;</a></li>
+                            @else
+                                <li><a href="{{ $products->nextPageUrl() }}">&gt;</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>

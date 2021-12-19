@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Category;
@@ -28,7 +29,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        $categories = Category::all();
-        View::share('categories', $categories);
+        try {
+            $categories = Category::all();
+        } catch (QueryException $e) {
+            dd('Query Exception'.$e->getMessage());
+        } catch (\Exception $e) {
+            dd('Exceptions'.$e->getMessage());
+        }
+        if(isset($categories)) {
+            View::share('categories', $categories);
+        }
     }
 }

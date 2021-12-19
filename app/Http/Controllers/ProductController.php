@@ -16,7 +16,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('product_id')->paginate(12);
         $productImages = ProductImages::all();
         return view('pages.products', compact(['products', 'productImages']));
     }
@@ -26,5 +26,42 @@ class ProductController extends Controller
         $prod = Product::where("product_id",$id)->first();
         $productImage = ProductImages::where("product_id",$id)->first();
         return view("pages.product_details", compact(['prod', 'productImage']));
+    }
+
+    public function sortProduct($sType)
+    {
+        $products = Product::orderBy('product_id')->get();
+        switch ($sType) {
+            case 'name a-z':
+                $products = Product::orderBy('product_name', 'asc')->get();
+                break;
+            case 'name z-a':
+                $products = Product::orderBy('product_name', 'desc')->get();
+                break;
+            case 'price desc':
+                $products = Product::orderBy('price', 'desc')->get();
+                break;
+            case 'price asc':
+                $products = Product::orderBy('price', 'asc')->get();
+                break;
+            default:
+        }
+        $productImages = ProductImages::all();
+        return view('pages.products', compact(['products', 'productImages']));
+    }
+
+    public function searchByCate($category)
+    {
+        $products = Product::where('category_id', $category)->paginate(12);
+        $productImages = ProductImages::all();
+        return view('pages.products', compact(['products', 'productImages']));
+    }
+
+    public function searchByKeyword(Request $request)
+    {
+        $keyword = $request->input('search-key');
+        $products = Product::where('product_name', 'LIKE', '%'.$keyword.'%')->paginate(12);
+        $productImages = ProductImages::all();
+        return view('pages.products', compact(['products', 'productImages']));
     }
 }
