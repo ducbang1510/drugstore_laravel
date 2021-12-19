@@ -4,6 +4,17 @@
 ?>
 @extends('pages.layout')
 @section('content')
+    <div class="breadcrumb bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0">
+                    <a href="{{ route('home') }}">Trang chủ</a>
+                    <span class="mx-2 mb-0">/</span>
+                    <strong class="breadcrumb-sub-title text-black">Sản phẩm</strong>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="product-detail site-section">
         <div class="container">
             <div class="row">
@@ -28,7 +39,7 @@
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
                                 </div>
-                                <input name="quantity" type="text" class="form-control text-center" min="1" value="1" placeholder=""
+                                <input name="quantity" type="number" class="form-control text-center" min="1" value="1" placeholder=""
                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>

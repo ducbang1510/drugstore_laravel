@@ -24,7 +24,7 @@ Route::get('product-details/{product_id}', ['as'=>'prodDetail', 'uses' => 'Produ
 Route::get('/show-cart', ['as' => 'showCart', 'uses' => 'CartController@showCart']);
 Route::post('/cart/add-cart', ['as' => 'cart', 'uses' => 'CartController@addCart']);
 Route::get('/cart/remove-item/{itemId},', ['as' => 'remove-item', 'uses' => 'CartController@removeItem']);
-Route::post('/cart/update-item/{itemId}', ['as' => 'update-item', 'uses' => 'CartController@updateItem']);
+Route::post('/cart/update-cart', ['as' => 'update-cart', 'uses' => 'CartController@updateCart']);
 Route::get('/cart/destroy-cart', ['as' => 'destroy-cart', 'uses' => 'CartController@destroyCart']);
 // Checkout
 Route::get('/checkout', ['as' => 'checkout', 'uses' => 'CheckoutController@index']);

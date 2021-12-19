@@ -33,12 +33,17 @@ class CartController extends Controller
         return view('pages.cart', compact(['cart']));
     }
 
-    public function updateItem($itemId, Request $request)
+    public function updateCart(Request $request)
     {
-        Cart::update(
-            $itemId,
-            ['qty' => $request->input('quantity'.$itemId)]
-        );
+        $cart = Cart::content();
+
+        foreach ($cart as $item) {
+            $itemId = $item -> rowId;
+            Cart::update(
+                $itemId,
+                ['qty' => $request->input('quantity'.$itemId)]
+            );
+        }
         return redirect()->route('showCart')->with('message', 'Cập nhật giỏ hàng thành công');
     }
 
