@@ -60,7 +60,16 @@ class ProductController extends Controller
     public function searchByKeyword(Request $request)
     {
         $keyword = $request->input('search-key');
-        $products = Product::where('product_name', 'LIKE', '%'.$keyword.'%')->paginate(12);
+        $products = Product::where('product_name', 'like', '%'.$keyword.'%')->paginate(12);
+        $productImages = ProductImages::all();
+        return view('pages.products', compact(['products', 'productImages']));
+    }
+
+    public function searchByPrice(Request $request)
+    {
+        $minPrice = $request->amount1;
+        $maxPrice = $request->amount2;
+        $products = Product::where('price', '>', $minPrice)->where('price', '<', $maxPrice)->paginate(12);
         $productImages = ProductImages::all();
         return view('pages.products', compact(['products', 'productImages']));
     }

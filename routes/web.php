@@ -20,7 +20,8 @@ Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/products', ['as' => 'shop', 'uses' => 'ProductController@index']);
 Route::get('/products/{sType}', ['as' => 'sort-products', 'uses' => 'ProductController@sortProduct']);
 Route::get('/products/{category}', ['as' => 'search-by-cate', 'uses' => 'ProductController@searchByCate']);
-Route::post('/products', ['as' => 'search-by-key', 'uses' => 'ProductController@searchByKeyword']);
+Route::post('/products/search', ['as' => 'search-by-key', 'uses' => 'ProductController@searchByKeyword']);
+Route::post('/products/search-by-price', ['as' => 'search-by-price', 'uses' => 'ProductController@searchByPrice']);
 // Product-Details
 Route::get('product-details/{product_id}', ['as'=>'prodDetail', 'uses' => 'ProductController@getProductDetail']);
 // Cart (show, add, update, remove-item)

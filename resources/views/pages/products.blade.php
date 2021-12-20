@@ -14,20 +14,26 @@
 
     <div class="site-section">
         <div class="container">
-
             <div class="filter-product row">
                 <div class="col-lg-6">
                     <h3 class="mb-3 h6 filter-title text-black d-block">Lọc theo giá</h3>
                     <div id="slider-range" class="border-primary"></div>
-                    <input type="text" name="amount" id="amount" class="form-control border-0 pl-0 bg-white" disabled=""/>
+                    <input type="text" name="amount" id="amount" class="form-control border-0 pl-0 bg-white" disabled>
+                    <form action="{{ route('search-by-price') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="amount1" id="amount1" class="form-control border-0 pl-0 bg-white">
+                        <input type="hidden" name="amount2" id="amount2" class="form-control border-0 pl-0 bg-white">
+                        <button type="submit" class="btn btn-primary">Lọc</button>
+                    </form>
                 </div>
                 <div class="col-lg-6">
                     <h3 class="mb-3 h6 filter-title text-black d-block">Lọc theo tham khảo</h3>
                     <button type="button"
                             class="filter-btn btn btn-secondary btn-md dropdown-toggle px-4"
                             id="dropdownMenuReference"
-                            data-toggle="dropdown"
-                    >Mặc định </button>
+                            data-toggle="dropdown">
+                        Mặc định
+                    </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
                         <a class="dropdown-item" href="{{ route('sort-products', ['sType'=>'default']) }}">Mặc định</a>
                         <a class="dropdown-item" href="{{ route('sort-products', ['sType'=>'name a-z']) }}">Tên A - Z</a>
@@ -59,11 +65,9 @@
                                  alt="Image">
                         </a>
                         <h3 class="text-dark product-name">
-                            <a
-                                data-toggle="tooltip"
+                            <a data-toggle="tooltip"
                                 title="{{ $p->product_name }}"
-                                href="{{route('prodDetail', ['product_id'=>$p->product_id])}}"
-                            >
+                                href="{{ route('prodDetail', ['product_id'=>$p->product_id]) }}">
                                 {{ $p->product_name }}
                             </a>
                         </h3>
@@ -75,7 +79,7 @@
                 <div class="col-md-12 text-center">
                     <div class="site-block-27">
                         <ul>
-                            @if($products->onFirstPage())
+                            @if($products->currentPage() === 1)
                                 <li><a href="{{ $products->previousPageUrl() }}" class="disabled">&lt;</a></li>
                             @else
                                 <li><a href="{{ $products->previousPageUrl() }}">&lt;</a></li>
