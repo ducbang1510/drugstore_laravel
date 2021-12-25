@@ -32,6 +32,8 @@ Route::post('/cart/update-cart', ['as' => 'update-cart', 'uses' => 'CartControll
 Route::get('/cart/destroy-cart', ['as' => 'destroy-cart', 'uses' => 'CartController@destroyCart']);
 // Checkout
 Route::get('/checkout', ['as' => 'checkout', 'uses' => 'CheckoutController@index']);
+Route::post('/checkout/save-customer', ['as' => 'save-customer', 'uses' => 'CheckoutController@saveCustomer']);
+Route::get('/checkout/done', ['as' => 'complete-order', 'uses' => 'CheckoutController@addOrder']);
 // About
 Route::get('/about', ['as' => 'about', 'uses' => 'AboutController@index']);
 // Contact
