@@ -18,8 +18,8 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
 // Products
 Route::get('/products', ['as' => 'shop', 'uses' => 'ProductController@index']);
-Route::get('/products/{sType}', ['as' => 'sort-products', 'uses' => 'ProductController@sortProduct']);
-Route::get('/products/{category}', ['as' => 'search-by-cate', 'uses' => 'ProductController@searchByCate']);
+Route::get('/products/sort/{sType}', ['as' => 'sort-products', 'uses' => 'ProductController@sortProduct']);
+Route::get('/products/search-by-category/{category}', ['as' => 'search-by-cate', 'uses' => 'ProductController@searchByCate']);
 Route::post('/products/search', ['as' => 'search-by-key', 'uses' => 'ProductController@searchByKeyword']);
 Route::post('/products/search-by-price', ['as' => 'search-by-price', 'uses' => 'ProductController@searchByPrice']);
 // Product-Details
@@ -40,6 +40,8 @@ Route::get('/about', ['as' => 'about', 'uses' => 'AboutController@index']);
 Route::get('/contact', ['as' => 'contact', 'uses' => 'ContactController@index']);
 
 // Backend
+// Report
+Route::get('/admin/report', ['as' => 'report', 'uses' => 'AdminController@reportPage']);
 // Dashboard
 Route::get('/admin/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@index']);
 // Product

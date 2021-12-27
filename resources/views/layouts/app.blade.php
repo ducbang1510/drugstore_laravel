@@ -27,6 +27,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="backend_plugin/js/raphael-min.js"></script>
+        <script src="backend_plugin/js/morris.js"></script>
+        <link rel="stylesheet" href="backend_plugin/css/morris.css">
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -52,5 +55,6 @@
         @stack('modals')
 
         @livewireScripts
+        <script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script>
     </body>
 </html>

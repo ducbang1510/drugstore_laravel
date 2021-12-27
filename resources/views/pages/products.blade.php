@@ -79,25 +79,27 @@
                 <div class="col-md-12 text-center">
                     <div class="site-block-27">
                         <ul>
-                            @if($products->currentPage() === 1)
-                                <li><a href="{{ $products->previousPageUrl() }}" class="disabled">&lt;</a></li>
-                            @else
-                                <li><a href="{{ $products->previousPageUrl() }}">&lt;</a></li>
-                            @endif
-
-                            @for($p = 1; $p <= $products->lastPage(); $p++)
-                                @if($products->currentPage() === $p)
-                                    <li class="active"><a href="{{ $products->url($p) }}">{{ $p }}</a></li>
+                            @isset($products)
+                                @if($products->onFirstPage())
+                                    <li><a href="{{ $products->previousPageUrl() }}" class="disabled">&lt;</a></li>
                                 @else
-                                    <li><a href="{{ $products->url($p) }}">{{ $p }}</a></li>
+                                    <li><a href="{{ $products->previousPageUrl() }}">&lt;</a></li>
                                 @endif
-                            @endfor
 
-                            @if($products->currentPage() === $products->lastPage())
-                                <li><a href="{{ $products->nextPageUrl() }}" class="disabled">&gt;</a></li>
-                            @else
-                                <li><a href="{{ $products->nextPageUrl() }}">&gt;</a></li>
-                            @endif
+                                @for($p = 1; $p <= $products->lastPage(); $p++)
+                                    @if($products->currentPage() === $p)
+                                        <li class="active"><a href="{{ $products->url($p) }}">{{ $p }}</a></li>
+                                    @else
+                                        <li><a href="{{ $products->url($p) }}">{{ $p }}</a></li>
+                                    @endif
+                                @endfor
+
+                                @if($products->currentPage() === $products->lastPage())
+                                    <li><a href="{{ $products->nextPageUrl() }}" class="disabled">&gt;</a></li>
+                                @else
+                                    <li><a href="{{ $products->nextPageUrl() }}">&gt;</a></li>
+                                @endif
+                            @endisset
                         </ul>
                     </div>
                 </div>

@@ -16,4 +16,14 @@ class AdminController extends Controller
     {
         return view('dashboard');
     }
+
+    public function reportPage()
+    {
+        return view('admin.report.report');
+    }
+
+    public function reportByOrder()
+    {
+
+    }
 }
