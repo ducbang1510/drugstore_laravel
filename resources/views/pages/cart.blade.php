@@ -8,9 +8,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-0">
-                    <a href="{{route('home')}}">Trang chủ</a>
+                    <a href="{{ route('home') }}">Trang chủ</a>
                     <span class="mx-2 mb-0">/</span>
-                    <a href="{{route('home')}}">Sản phẩm</a>
+                    <a href="{{ route('home') }}">Sản phẩm</a>
                     <span class="mx-2 mb-0">/</span>
                     <strong class="breadcrumb-sub-title text-black">Giỏ hàng</strong>
                 </div>
@@ -25,7 +25,7 @@
                     <div class="site-blocks-table">
                         @if(session('message'))
                             <div class="alert alert-success">
-                                <strong>Success!</strong> {{ session('message') }}
+                                <strong>Thành công!</strong> {{ session('message') }}
                             </div>
                         @endif
                         <table class="table table-bordered">

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
+use Mail;
 
 class CheckoutController extends Controller
 {
@@ -62,6 +63,7 @@ class CheckoutController extends Controller
             'order_date' => $date,
             'total_price' => (float)$request->input('total_price'),
         ]);
+        $customer = Customer::where("customer_id", $request->input('customer_id_hidden'))->first();
 
         $content = Cart::content();
         foreach ($content as $item) {
@@ -74,6 +76,10 @@ class CheckoutController extends Controller
         }
         if(isset($order_detail_add))
         {
+            Mail::send('emails.order_confirm_email', compact(['content', 'customer']), function($email) use($customer) {
+                $email->subject('Đại Lý Thuốc ABC - Xác Nhận Đơn Hàng');
+                $email->to($customer->email, $customer->name);
+            });
             $isSuccess = "1";
             Cart::destroy();
         }
