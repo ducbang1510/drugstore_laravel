@@ -57,21 +57,22 @@ class CheckoutController extends Controller
     public function addOrder(Request $request)
     {
         $date = Carbon::now('Asia/Ho_Chi_Minh');
-        echo $date->toDateString();
+        $date->toDateString();
+        $content = Cart::content();
+
         $order_add = Order::create([
             'customer_id' => $request->input('customer_id_hidden'),
             'order_date' => $date,
-            'total_price' => (float)$request->input('total_price'),
+            'total_price' => (double)str_replace(',', '', $request->input('total_price')),
         ]);
         $customer = Customer::where("customer_id", $request->input('customer_id_hidden'))->first();
 
-        $content = Cart::content();
         foreach ($content as $item) {
             $order_detail_add = OrderDetails::create([
                 'order_id' => $order_add->id,
                 'product_id' => $item->id,
                 'quantity' => $item->qty,
-                'unit_price' => (float)$item->price,
+                'unit_price' => (double)$item->price,
             ]);
         }
         if(isset($order_detail_add))

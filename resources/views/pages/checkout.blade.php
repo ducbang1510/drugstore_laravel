@@ -69,23 +69,6 @@
                 </div>
 
                 <div class="col-md-6">
-
-                    <div class="row mb-5">
-                        <div class="col-md-12">
-                            <h2 class="h3 mb-3 text-black">Mã giảm giá</h2>
-                            <div class="p-3 p-lg-5 border">
-                                <label for="c_code" class="checkout-title text-black mb-3">Nhập mã phiếu giảm giá</label>
-                                <div class="input-group w-75">
-                                    <input type="text" class="form-control" id="c_code" placeholder="" aria-label="Coupon Code"
-                                           aria-describedby="button-addon2">
-                                    <div class="input-group-append">
-                                        <button class="checkout-code-discount btn btn-primary btn-sm px-4" type="button" id="button-addon2">Áp dụng</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="row mb-5">
                         <div class="col-md-12">
                             <h2 class="h3 mb-3 text-black">Đơn hàng</h2>
@@ -110,45 +93,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
-                                <div class="checkout-payment border mb-3">
-                                    <h3 class="h6 mb-0">
-                                        <a class="d-block" data-toggle="collapse"
-                                           href="#collapsecheque" role="button"
-                                           aria-expanded="false" aria-controls="collapsecheque">Thanh toán qua ví Momo
-                                        </a>
-                                    </h3>
-
-                                    <div class="collapse" id="collapsecheque">
-                                        <div class="py-2 px-4">
-                                            <p class="checkout-payment-des mb-0">Thực hiện thanh toán bằng cách mở ví
-                                                điện tử Momo dùng chức năng quét mã QR Code quét lên mã hiển thị để thực
-                                                hiện thanh toán.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="checkout-payment border mb-5">
-                                    <h3 class="h6 mb-0">
-                                        <a class="d-block" data-toggle="collapse"
-                                           href="#collapsepaypal" role="button"
-                                           aria-expanded="false" aria-controls="collapsepaypal">Thanh toán khi nhận hàng
-                                        </a>
-                                    </h3>
-
-                                    <div class="collapse" id="collapsepaypal">
-                                        <div class="py-2 px-4">
-                                            <p class="checkout-payment-des mb-0">Khi người giao hàng đến, khách hàng thực
-                                                hiện thanh toán với người giao hàng.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-lg btn-block" onclick="window.location='thankyou.html'">
-                                        Đặt Hàng</button>
-                                </div>
-
                             </div>
                         </div>
                     </div>

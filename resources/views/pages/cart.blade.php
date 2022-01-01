@@ -107,7 +107,7 @@
                                     <span class="cart-total text-black">Tổng: </span>
                                 </div>
                                 <div class="col-md-8 text-right">
-                                    <strong class="cart-total text-black">{{ Cart::priceTotal() }}</strong>
+                                    <strong class="cart-total text-black">{{ Cart::total() }}</strong>
                                 </div>
                             </div>
                             <div class="row">

@@ -8,6 +8,34 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                @isset($orders)
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Order date</th>
+                            <th>Total price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($orders as $item)
+                                <tr>
+                                    <td>{{ $item -> order_id }}</td>
+                                    <td>{{ $item -> order_date }}</td>
+                                    <td>{{ $item -> total_price }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endisset
+                <form method="POST" action="{{ route('report-order') }}">
+                    @csrf
+                    <label for="year">Year:</label><br>
+                    <input type="text" id="year" name="year" value=""><br>
+                    <label for="month">Month:</label><br>
+                    <input type="text" id="month" name="month" value=""><br><br>
+                    <button class="btn btn-primary" type="submit">Gửi</button>
+                </form>
                 <section class="wrapper">
                     <div class="chart_agile">
                         <div class="col-md-6 floatcharts_w3layouts_left">

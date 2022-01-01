@@ -41,9 +41,11 @@ Route::get('/contact', ['as' => 'contact', 'uses' => 'ContactController@index'])
 
 // Backend
 // Report
-Route::get('/admin/report', ['as' => 'report', 'uses' => 'AdminController@reportPage']);
+Route::get('/admin/report', ['as' => 'report-page', 'uses' => 'AdminController@reportPage']);
+Route::post('/admin/report-order', ['as' => 'report-order', 'uses' => 'AdminController@reportOrder']);
 // Dashboard
 Route::get('/admin/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@index']);
+Route::get('/admin', ['as' => '', 'uses' => 'AdminController@index']);
 // Product
 Route::get('admin/products/list-products', ['as' => 'list-products', 'uses' => 'AdminProductController@listProducts']);
 Route::get('admin/products/add-product', ['as' => 'add-product-page', 'uses' => 'AdminProductController@addProductPage']);

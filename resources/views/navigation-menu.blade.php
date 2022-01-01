@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('report') }}" :active="request()->routeIs('report')">
+                    <x-jet-nav-link href="{{ route('report-page') }}" :active="request()->routeIs('report-page')">
                         {{ __('Báo cáo') }}
                     </x-jet-nav-link>
                 </div>

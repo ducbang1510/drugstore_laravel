@@ -30,19 +30,19 @@ class ProductController extends Controller
 
     public function sortProduct($sType)
     {
-        $products = Product::orderBy('product_id')->get();
+        $products = Product::orderBy('product_id')->paginate(12);
         switch ($sType) {
             case 'name a-z':
-                $products = Product::orderBy('product_name', 'asc')->get();
+                $products = Product::orderBy('product_name', 'asc')->paginate(12);
                 break;
             case 'name z-a':
-                $products = Product::orderBy('product_name', 'desc')->get();
+                $products = Product::orderBy('product_name', 'desc')->paginate(12);
                 break;
             case 'price desc':
-                $products = Product::orderBy('price', 'desc')->get();
+                $products = Product::orderBy('price', 'desc')->paginate(12);
                 break;
             case 'price asc':
-                $products = Product::orderBy('price', 'asc')->get();
+                $products = Product::orderBy('price', 'asc')->paginate(12);
                 break;
             default:
         }

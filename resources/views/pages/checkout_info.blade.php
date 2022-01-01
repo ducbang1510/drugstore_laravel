@@ -44,29 +44,6 @@
                 </div>
 
                 <div class="col-md-6">
-
-                    <div class="row mb-5">
-                        <div class="col-md-12">
-                            <h2 class="h3 mb-3 text-black">Mã giảm giá</h2>
-                            <div class="p-3 p-lg-5 border">
-
-                                <label for="c_code" class="checkout-title text-black mb-3">Nhập mã phiếu giảm
-                                    giá</label>
-                                <div class="input-group w-75">
-                                    <input type="text" class="form-control" id="c_code" placeholder=""
-                                           aria-label="Coupon Code"
-                                           aria-describedby="button-addon2">
-                                    <div class="input-group-append">
-                                        <button class="checkout-code-discount btn btn-primary btn-sm px-4" type="button"
-                                                id="button-addon2">Áp dụng
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="row mb-5">
                         <div class="col-md-12">
                             <h2 class="h3 mb-3 text-black">Đơn hàng</h2>
@@ -85,12 +62,12 @@
                                                 <tr>
                                                     <td>{{$item->name}}<strong class="mx-2">x</strong> 1</td>
                                                     <td>{{$item->subtotal}}</td>
-                                                    <input name="customer_id_hidden" type="hidden"
-                                                           value="{{ $cus->customer_id }}">
-                                                    <input name="total_price" type="hidden" value=" {{ Cart::priceTotal() }}">
-
                                                 </tr>
                                             @endforeach
+                                            <input name="customer_id_hidden" type="hidden"
+                                                   value="{{ $cus->customer_id }}"/>
+                                            <input name="total_price" type="hidden" value="{{ Cart::priceTotal() }}" />
+
                                             <tr>
                                                 <td class="text-black font-weight-bold"><strong>Tổng hóa đơn</strong></td>
                                                 <td class="text-black font-weight-bold">
