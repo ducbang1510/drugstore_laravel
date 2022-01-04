@@ -49,7 +49,7 @@ class AdminController extends Controller
     public function reportOrder(Request $request)
     {
         $orders = Order::all();
-        $data_revenue = [];
+        $data_revenue = array();
 
 //        $DaysInCurrentMonth = date('t');
         $month = $request->input('month');
@@ -72,6 +72,6 @@ class AdminController extends Controller
                 }
             }
         }
-        return view('admin.report.report', compact(['orders']));
+        return view('admin.report.report', compact(['orders', 'data_revenue', 'month', 'year']));
     }
 }
