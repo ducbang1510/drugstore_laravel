@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Sửa Thông Tin User') }}
+            {{ __('Tạo User') }}
         </h2>
     </x-slot>
 
@@ -20,42 +20,30 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form method="POST" action="{{ route('edit-user', ['user_id'=>$user->id]) }} " enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('add-user') }} " enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Tên</label>
-                                    <input type="text" name="name" id="name"
-                                           class="form-control"
-                                           value="<?php if(isset($user->name)) echo $user->name; ?>">
+                                    <input type="text" name="name" id="name" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" name="email" id="email"
-                                           class="form-control"
-                                           value="<?php if(isset($user->email)) echo $user->email; ?>">
+                                    <input type="text" name="email" id="email" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Mật khẩu</label>
+                                    <input type="password" name="password" id="password" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="roles">Vai trò</label>
                                     <select class="form-control" name="roles" id="roles">
-                                        <option
-                                            <?php if (isset($user->roles)) {
-                                                if ($user->roles === "Admin")
-                                                    echo "selected";
-                                            } ?>
-                                            value="Admin">Admin
-                                        </option>
-                                        <option
-                                            <?php if (isset($user->roles)) {
-                                                if ($user->roles === "Web master")
-                                                    echo "selected";
-                                            } ?>
-                                            value="Web master">Web master
-                                        </option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Web master">Web master</option>
                                     </select>
                                 </div>
                                 <div class="form-group btn-group">
                                     <button style="cursor: pointer" type="submit" class="btn btn-primary">
-                                        Lưu
+                                        Thêm
                                     </button>
                                 </div>
                                 <div class="form-group btn-group">

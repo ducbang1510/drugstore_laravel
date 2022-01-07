@@ -8,15 +8,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="card bg-warning text-white">
-                    <div class="card-body">
-                        <?php if (isset($message)) {
-                            echo $message;
-                        } ?>
-                    </div>
-                </div>
                 @isset($role)
-                    @if($role == '1')
+                    @if($role === 'Admin')
+                        <div style="padding-left: 32px">
+                            <button onclick="location.href='{{ route('add-user-page') }}'" type="button" class="btn btn-primary">
+                                Tạo User</button>
+                        </div>
                         <div class="flex flex-col">
                             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -30,7 +27,7 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Tên
+                                                    Họ Tên
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -84,7 +81,7 @@
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <div class="text-sm text-gray-900">
-                                                                @php if(isset($c->roles)) { if($c->roles == '1') echo 'Admin'; else echo 'Nhân viên'; } @endphp
+                                                                @php if(isset($c->roles)) { echo $c->roles; } @endphp
                                                             </div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -101,6 +98,14 @@
                                         @endisset
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="card bg-warning text-white">
+                            <div class="card-body">
+                                <?php if (isset($message)) {
+                                    echo $message;
+                                } ?>
                             </div>
                         </div>
                     @endif

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Laravel\Fortify\Rules\Password;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -17,31 +19,68 @@ class AdminUserController extends Controller
     public function listUsers()
     {
         $role = Auth::user()->roles;
-        if($role == '1')
+        if($role === 'Admin')
         {
             $users = User::orderBy('id')->paginate(10);
             return view('admin.user.list_users', compact(['users', 'role']));
         }
-        else
+
+        $message = 'Đây là chức năng của tài khoản quyền Admin ! Bạn đang đăng nhập tài khoản quyền '.$role;
+        return view('admin.user.list_users', compact(['message', 'role']));
+    }
+
+    public function addUserPage()
+    {
+        $role = Auth::user()->roles;
+        if($role === 'Admin')
         {
-            $message = 'Đây là chức năng của tài khoản admin ! Bạn đang đăng nhập tài khoản nhân viên';
-            return view('admin.user.list_users', compact(['message', 'role']));
+            return view('admin.user.add_users', compact(['role']));
         }
+
+        $message = 'Đây là chức năng của tài khoản quyền Admin ! Bạn đang đăng nhập tài khoản quyền '.$role;
+        return view('admin.user.add_users', compact(['message', 'role']));
+    }
+
+    public function addUser(Request $request)
+    {
+        $role = Auth::user()->roles;
+        $messages = [
+            'name.required' => 'Bạn phải nhập tên của user !',
+            'email.required' => 'Bạn phải nhập email của user !',
+            'email.unique:users' => 'Email này đã được sử dụng',
+            'password.required' => 'Bạn phải nhập password của user !',
+        ];
+
+        Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', new Password],
+        ], $messages)->validate();
+
+        if ($role === 'Admin') {
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'roles' => $request->roles,
+            ]);
+        }
+
+        $users = User::orderBy('id')->paginate(10);
+        return view('admin.user.list_users', compact(['users', 'role']));
     }
 
     public function editUserPage($id)
     {
         $role = Auth::user()->roles;
-        if($role == '1')
+        if($role === 'Admin')
         {
             $user = User::where('id', $id)->first();
             return view('admin.user.edit_users', compact(['user', 'role']));
         }
-        else
-        {
-            $message = 'Đây là chức năng của tài khoản admin ! Bạn đang đăng nhập tài khoản nhân viên';
-            return view('admin.user.edit_users', compact(['message', 'role']));
-        }
+
+        $message = 'Đây là chức năng của tài khoản quyền Admin ! Bạn đang đăng nhập tài khoản quyền '.$role;
+        return view('admin.user.edit_users', compact(['message', 'role']));
     }
 
     public function editUser($id, Request $request)
@@ -57,7 +96,7 @@ class AdminUserController extends Controller
             'email' => 'required',
         ], $messages)->validate();
 
-        if($role == '1') {
+        if($role === 'Admin') {
             $user_edit = User::where('id', $id)->update([
                 'name' => $request->name,
                 'roles' => $request->roles,
@@ -66,6 +105,6 @@ class AdminUserController extends Controller
         }
 
         $user = User::where('id', $id)->first();
-        return view('admin.user.edit_users', compact(['user']));
+        return view('admin.user.edit_users', compact(['user', 'role']));
     }
 }

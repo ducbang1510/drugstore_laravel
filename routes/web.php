@@ -42,7 +42,8 @@ Route::get('/contact', ['as' => 'contact', 'uses' => 'ContactController@index'])
 // Backend
 // Report
 Route::get('/admin/report', ['as' => 'report-page', 'uses' => 'AdminController@reportPage']);
-Route::post('/admin/report-order', ['as' => 'report-order', 'uses' => 'AdminController@reportOrder']);
+Route::post('/admin/report-revenue', ['as' => 'report-revenue', 'uses' => 'AdminController@reportRevenue']);
+Route::get('/admin/list-orders', ['as' => 'list-orders', 'uses' => 'AdminController@listOrders']);
 // Dashboard
 Route::get('/admin/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@index']);
 Route::get('/admin', ['as' => '', 'uses' => 'AdminController@index']);
@@ -87,6 +88,8 @@ Route::post('admin/customers/edit-customer/{customer_id}', ['as' => 'edit-custom
 Route::get('admin/users/list-users', ['as' => 'list-users', 'uses' => 'AdminUserController@listUsers']);
 Route::get('admin/users/edit-user/{user_id}', ['as' => 'edit-user-page', 'uses' => 'AdminUserController@editUserPage']);
 Route::post('admin/users/edit-user/{user_id}', ['as' => 'edit-user', 'uses' => 'AdminUserController@editUser']);
+Route::get('admin/users/add-user', ['as' => 'add-user-page', 'uses' => 'AdminUserController@addUserPage']);
+Route::post('add-user', ['as' => 'add-user', 'uses' => 'AdminUserController@addUser']);
 // Order
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');

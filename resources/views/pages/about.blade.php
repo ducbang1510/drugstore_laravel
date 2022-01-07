@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-7 mx-auto align-self-center">
                     <div class=" text-center">
-                        <h1>Pharma group</h1>
+                        <h1>Pharma Group</h1>
                         <p>Một trong những chuỗi nhà thuốc bán lẻ hiện đại đầu tiên tại thị trường
                             Việt Nam, luôn luôn hướng đến mục tiêu nâng cao chất lượng chăm sóc sức khỏe cho từng
                             khách hàng.</p>

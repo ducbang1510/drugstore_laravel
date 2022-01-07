@@ -46,12 +46,9 @@ class AdminController extends Controller
         return $tong;
     }
 
-    public function reportOrder(Request $request)
+    public function reportRevenue(Request $request)
     {
-        $orders = Order::all();
         $data_revenue = array();
-
-//        $DaysInCurrentMonth = date('t');
         $month = $request->input('month');
         $year = $request->input('year');
         $dt = Carbon::now();
@@ -70,8 +67,15 @@ class AdminController extends Controller
                 for($i = 1; $i < 13; $i++) {
                     $data_revenue[] = $this->totalRevenue($year, $i);
                 }
+                return view('admin.report.report', compact(['data_revenue', 'year']));
             }
         }
-        return view('admin.report.report', compact(['orders', 'data_revenue', 'month', 'year']));
+        return view('admin.report.report', compact(['data_revenue', 'month', 'year']));
+    }
+
+    public function listOrders()
+    {
+        $orders = Order::all();
+        return view('admin.report.report', compact(['orders']));
     }
 }
