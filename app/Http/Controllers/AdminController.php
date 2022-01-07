@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Order;
+use App\Models\OrderDetails;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -75,7 +78,25 @@ class AdminController extends Controller
 
     public function listOrders()
     {
-        $orders = Order::all();
-        return view('admin.report.report', compact(['orders']));
+        $orders = Order::orderBy('order_id')->paginate(10);
+        return view('admin.order.list_orders', compact(['orders']));
+    }
+
+    public function searchOrderById(Request $request)
+    {
+        $order = Order::where("order_id", $request->orderId)->first();
+        return view('admin.order.list_orders', compact(['order']));
+    }
+
+    public function orderDetails($orderId)
+    {
+        $arr_products = array();
+        $order = Order::where("order_id", $orderId)->first();
+        $orderDetails = OrderDetails::where("order_id", $orderId)->get();
+        foreach ($orderDetails as $item)
+        {
+            $arr_products[] = Product::where("product_id", $item->product_id)->first();
+        }
+        return view('admin.order_details.order_details', compact(['orderDetails', 'arr_products', 'order']));
     }
 }

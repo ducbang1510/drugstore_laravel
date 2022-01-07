@@ -50,12 +50,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="date_of_birth">Ngày sinh</label>
-                            <input type="date" name="date_of_birth" id="date_of_birth"
-                                   class="form-control"
-                                   value="<?php if(isset($customer->date_of_birth)) echo $customer->date_of_birth; ?>">
-                        </div>
-                        <div class="form-group">
                             <label for="phone">Số điện thoại</label>
                             <input type="text" name="phone" id="phone"
                                    class="form-control"

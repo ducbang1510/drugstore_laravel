@@ -29,6 +29,7 @@ class CheckoutController extends Controller
             'cAddress.required' => 'Vui lòng nhập địa chỉ !',
             'cEmail.required' => 'Vui lòng nhập email !',
             'cPhone.required' => 'Vui lòng nhập số điện thoại !',
+            'date_of_birth.required' => 'Vui lòng chọn ngày sinh !'
         ];
 
         try {

@@ -35,10 +35,11 @@
                             <div class="form-group">
                                 <label for="cGender" class="checkout-title text-black">Giới tính<span class="text-danger">*</span></label>
                                 <select id="cGender" name="cGender" class="form-control" required>
-                                    <option value="1">Nam</option>
-                                    <option value="2">Nữ</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
                                 </select>
                             </div>
+
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <label for="cAddress" class="checkout-title text-black">Địa chỉ<span class="text-danger">*</span></label>

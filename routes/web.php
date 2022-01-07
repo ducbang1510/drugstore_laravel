@@ -43,7 +43,6 @@ Route::get('/contact', ['as' => 'contact', 'uses' => 'ContactController@index'])
 // Report
 Route::get('/admin/report', ['as' => 'report-page', 'uses' => 'AdminController@reportPage']);
 Route::post('/admin/report-revenue', ['as' => 'report-revenue', 'uses' => 'AdminController@reportRevenue']);
-Route::get('/admin/list-orders', ['as' => 'list-orders', 'uses' => 'AdminController@listOrders']);
 // Dashboard
 Route::get('/admin/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@index']);
 Route::get('/admin', ['as' => '', 'uses' => 'AdminController@index']);
@@ -91,6 +90,10 @@ Route::post('admin/users/edit-user/{user_id}', ['as' => 'edit-user', 'uses' => '
 Route::get('admin/users/add-user', ['as' => 'add-user-page', 'uses' => 'AdminUserController@addUserPage']);
 Route::post('add-user', ['as' => 'add-user', 'uses' => 'AdminUserController@addUser']);
 // Order
+Route::get('/admin/list-orders', ['as' => 'list-orders', 'uses' => 'AdminController@listOrders']);
+Route::post('/admin/list-orders/search', ['as' => 'search-order', 'uses' => 'AdminController@searchOrderById']);
+// OrderDetails
+Route::get('admin/order/{order_id}/order-details', ['as' => 'order-details', 'uses' => 'AdminController@orderDetails']);
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');

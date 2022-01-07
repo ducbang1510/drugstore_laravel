@@ -55,30 +55,6 @@
                 </div>
 
                 <div class="container">
-                    @isset($orders)
-                    <h4 style="text-align: center">Danh Sách Tất Cả Đơn Hàng</h4>
-                    <div>
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Mã đơn hàng</th>
-                                <th>Ngày đặt hàng</th>
-                                <th>Tổng tiền</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($orders as $item)
-                                    <tr>
-                                        <td>{{ $item -> order_id }}</td>
-                                        <td>{{ $item -> order_date }}</td>
-                                        <td>{{ number_format($item -> total_price, 0) }}đ</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    @endisset
-
                     @isset($data_revenue, $month, $year)
                         <div id="graph11"></div>
                         <div style="text-align: center;">
@@ -171,44 +147,6 @@
                         </div>
                     @endisset
                 </div>
-
-
-{{----}}
-{{--                        Hinh 5--}}
-{{--                        <div class="col-md-6 floatcharts_w3layouts_left">--}}
-{{--                            <div class="floatcharts_w3layouts_top">--}}
-{{--                                <div class="floatcharts_w3layouts_bottom">--}}
-{{--                                    <div id="graph8"></div>--}}
-{{--                                    <script>--}}
-{{--                                        /* data stolen from http://howmanyleft.co.uk/vehicle/jaguar_'e'_type */--}}
-{{--                                        var day_data = [--}}
-{{--                                            {"period": "2012-10-01", "licensed": 3407, "sorned": 660},--}}
-{{--                                            {"period": "2012-09-30", "licensed": 3351, "sorned": 629},--}}
-{{--                                            {"period": "2012-09-29", "licensed": 3269, "sorned": 618},--}}
-{{--                                            {"period": "2012-09-20", "licensed": 3246, "sorned": 661},--}}
-{{--                                            {"period": "2012-09-19", "licensed": 3257, "sorned": 667},--}}
-{{--                                            {"period": "2012-09-18", "licensed": 3248, "sorned": 627},--}}
-{{--                                            {"period": "2012-09-17", "licensed": 3171, "sorned": 660},--}}
-{{--                                            {"period": "2012-09-16", "licensed": 3171, "sorned": 676},--}}
-{{--                                            {"period": "2012-09-15", "licensed": 3201, "sorned": 656},--}}
-{{--                                            {"period": "2012-09-10", "licensed": 3215, "sorned": 622}--}}
-{{--                                        ];--}}
-{{--                                        Morris.Bar({--}}
-{{--                                            element: 'graph8',--}}
-{{--                                            data: day_data,--}}
-{{--                                            xkey: 'period',--}}
-{{--                                            ykeys: ['licensed', 'sorned'],--}}
-{{--                                            labels: ['Licensed', 'SORN'],--}}
-{{--                                            xLabelAngle: 60--}}
-{{--                                        });--}}
-{{--                                    </script>--}}
-
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="clearfix"></div>--}}
-{{--                    </div>--}}
-{{--                </section>--}}
             </div>
         </div>
     </div>
